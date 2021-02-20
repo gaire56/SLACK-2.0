@@ -5,6 +5,7 @@ import { db } from '../../firebase/firebase';
 const SidebarOption = ({ Icon, title, addChannelOption, id }) => {
   const addChannel = () => {
     const channelName = prompt('please enter the channel name');
+
     if (channelName) {
       db.collection('rooms').add({
         name: channelName,
@@ -52,4 +53,7 @@ const SidebarOptionContainer = styled.div`
   }
 `;
 
-const SidebarOptionChannel = styled.div``;
+const SidebarOptionChannel = styled.h3`
+  padding: 10px 0;
+  font-weight: 300;
+`;
