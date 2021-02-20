@@ -4,7 +4,7 @@ import './App.css';
 import styled from 'styled-components';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
-import Chat from './chat/Chat';
+import Chat from './components/chat/Chat';
 
 function App() {
   return (
