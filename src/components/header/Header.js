@@ -9,6 +9,8 @@ import { auth } from '../../firebase/firebase';
 
 const Header = () => {
   const [user] = useAuthState(auth);
+
+  console.log('user is ', user);
   return (
     <HeaderContainer>
       {/* Header Left */}
@@ -16,7 +18,7 @@ const Header = () => {
         <HeaderAvatar
           onClick={() => auth.signOut()}
           alt={user?.displayName}
-          src={user?.photoUrl}
+          src={user?.photoURL}
         />
         <AccessTimeIcon />
       </HeaderLeft>
