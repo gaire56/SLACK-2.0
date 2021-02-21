@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
-import { db } from '../../firebase/firebase';
+import { auth, db } from '../../firebase/firebase';
 import firebase from 'firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const ChatInput = ({ channelName, channelId, chatRef }) => {
   const [input, setInput] = useState('');
+  const [user] = useAuthState(auth);
 
   const sendMessage = (e) => {
     e.preventDefault(); // Prevents refresh
@@ -17,9 +19,8 @@ const ChatInput = ({ channelName, channelId, chatRef }) => {
     db.collection('rooms').doc(channelId).collection('messages').add({
       message: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      user: 'Anant Gaire',
-      userImage:
-        'https://pbs.twimg.com/profile_images/1326156064547508238/9qpMeON7.jpg',
+      user: user.displayName,
+      userImage: user.photoURL,
     });
 
     chatRef.current.scrollIntoView({
